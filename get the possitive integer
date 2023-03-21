@@ -1,0 +1,41 @@
+#include <iostream>
+#include <cstdlib>
+using namespace std;
+int main(void)
+{
+	int *arx;
+	int i = 0;
+	int N;
+	
+	bool pogi = true;
+	
+	arx = (int*) malloc(sizeof(int));
+	while(pogi)
+	{
+		cout<<i+1<<". ";
+		cin>>arx[i];
+		if(!arx[i])
+		{
+			pogi = false;
+		}
+		else
+		{
+			i++;
+			arx = (int*) realloc(arx, (i+1)* sizeof(int));
+			if(!arx)
+			{
+				cout<<"allocation error!";
+				return 1;
+			}
+		}		
+	}
+	N = i;
+	
+	cout<<"data listing"<<endl;
+	for(i=0; i<N; i++)
+	{
+		cout<<arx[i]<<endl;
+	}
+	free(arx);
+	return 0;
+}
