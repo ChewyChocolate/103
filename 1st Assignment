@@ -1,0 +1,31 @@
+#include <iostream>
+#include <cstdlib>
+
+using namespace std;
+
+int main()
+{
+  int *dynamicArr;
+  int x;
+  float y = 0, average = 0;
+  
+  cout << "Enter A Number: ";
+  cin >> x;
+  dynamicArr = (int*)malloc(sizeof(int) * x);
+  if(dynamicArr == NULL)
+  {
+    cout << "Memory not Allocated!" << endl;
+    return 1;
+  } else {
+    for(int i = 0; i < x; i++)
+    {
+      cout << i + 1 << ". ";
+      cin >> dynamicArr[i];
+      y += dynamicArr[i];
+    }
+    average = y / x;
+    cout << "Total Average: " << average << endl;
+    free(dynamicArr);
+  }
+  return 0;
+}
