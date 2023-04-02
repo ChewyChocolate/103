@@ -3,39 +3,41 @@
 using namespace std;
 int main(void)
 {
-	int *arx;
-	int i = 0;
-	int N;
-	
-	bool pogi = true;
-	
-	arx = (int*) malloc(sizeof(int));
-	while(pogi)
-	{
-		cout<<i+1<<". ";
-		cin>>arx[i];
-		if(!arx[i])
-		{
-			pogi = false;
-		}
-		else
-		{
-			i++;
-			arx = (int*) realloc(arx, (i+1)* sizeof(int));
-			if(!arx)
-			{
-				cout<<"allocation error!";
-				return 1;
-			}
-		}		
-	}
-	N = i;
-	
-	cout<<"data listing"<<endl;
-	for(i=0; i<N; i++)
-	{
-		cout<<arx[i]<<endl;
-	}
-	free(arx);
-	return 0;
+    int *arx;
+    int i = 0;
+    int N;
+
+    bool pogi = true;
+
+    arx = (int*) malloc(sizeof(int)); // allocate memory for one integer
+    while(pogi)
+    {
+        cout<<i+1<<". ";
+        cin>>arx[i]; // read an integer from the user
+        if(!arx[i])
+        {
+            pogi = false; // stop if the user enters 0
+        }
+        else
+        {
+            i++;
+            arx = (int*) realloc(arx, (i+1)* sizeof(int)); // reallocate memory for the array
+            if(!arx)
+            {
+                cout<<"allocation error!";
+                return 1;
+            }
+        }       
+    }
+    N = i;
+
+    cout<<"data listing"<<endl;
+    for(i=0; i<N; i++)
+    {
+        if(arx[i] < 0){ // check if the integer is negative
+            cout<<arx[i]<<endl; // print out the negative integer
+        }
+    }
+    free(arx); // free the dynamically allocated memory
+    return 0;
 }
