@@ -34,7 +34,7 @@ int main(void)
     cout<<"data listing"<<endl;
     for(i=0; i<N; i++)
     {
-        if(arx[i] < 0){ // check if the integer is negative
+        if(arx[i] > 0){ // check if the integer is negative
             cout<<arx[i]<<endl; // print out the negative integer
         }
     }
