@@ -1,0 +1,12 @@
+#include <iostream>
+using namespace std;
+
+int main (){
+    int x = 123345;
+    FILE *fp;
+    fp = fopen("file.dat" , "wb");
+
+    fwrite(&x, sizeof(int), 1, fp);
+    fclose(fp);
+    return 0;
+}
