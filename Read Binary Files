@@ -1,0 +1,12 @@
+#include <iostream>
+using namespace std;
+
+int main (){
+    FILE *fp;
+    int x;
+    fp = fopen("file.dat" , "rb");
+    fread(&x, sizeof(int), 1, fp);
+    cout << x << endl;
+    fclose(fp);
+    return 0;
+}
