@@ -1,0 +1,50 @@
+#include <iostream>
+#include <cstdlib>
+#include <stdio.h>
+using namespace std;
+
+int main(void)
+{
+    FILE *fp;
+    float *arx;
+    int N;
+    int i = 0;
+    bool more = true;
+
+    fp = fopen("scores.dat", "rb");
+    if (fp)
+    {
+        char response;
+        cout << "File already exists!" << endl;
+        cout << "Overwrite (y/n)? ";
+        cin >> response;
+        if (response != 'y' && response != 'Y')
+        {
+            return 1;
+        }
+    }
+    fp = fopen("scores.dat", "wb");
+    arx = (float *)malloc(0);
+    while (more)
+    {
+        arx = (float *)realloc(arx, sizeof(float) * (i + 1));
+        if (!arx)
+        {
+            cout << "Allocation error!";
+            return 1;
+        }
+        cout << i + 1 << ". ";
+        cin >> arx[i];
+        if (!arx[i])
+            more = false;
+        else
+            i++;
+    }
+    N = i;
+    fwrite(&N, sizeof(int), 1, fp);
+    fwrite(arx, sizeof(float), N, fp);
+    fclose(fp);
+    free(arx);
+    cout << endl << "File is saved!";
+    return 0;
+}
